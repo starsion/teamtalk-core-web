@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>IM</title>
+</head>
+
+<body>
+    <div>hello</div>
+    <script type="text/javascript" src="dist/common-min-minify.js"></script>
+    <script type="text/javascript">
+
+        var client = new TeamTalkWebClient({ wsurl: 'ws://10.9.38.92:9090' })
+
+        doLogin({ username: 'test', password: 'test', })
+            .then(
+                (result) => {
+                    console.log('登录结果======', result)
+                    getUnreadMsg()
+                        .then((result) => {
+                            console.log('未读消息=======', result)
+                        }).catch((err) => {
+                            console.log(err)
+                        })
+                    getRecentlySession()
+                        .then((result) => {
+                            console.log('近期会话=======', result)
+                        }).catch((err) => {
+                            console.log(err)
+                        })
+                    getFirendsConcats()
+                        .then((result) => {
+                            console.log('好友列表=======', result)
+                        }).catch((err) => {
+                            console.log(err)
+                        })
+                    getGroupConcats()
+                        .then((result) => {
+                            console.log('群列表=======', result)
+                        }).catch((err) => {
+                            console.log(err)
+                        })
+                    getMsgForChatMain(1, 5)
+                        .then((result) => {
+                            console.log('与某用户会话信息=======', result)
+                        }).catch((err) => {
+                            console.log(err)
+                        })
+                    sendMessage('这是一个测试', 1, 5)
+                        .then((result) => {
+                            console.log('与某用户会话信息=======', result)
+                        }).catch((err) => {
+                            console.log(err)
+                        })
+                }
+            ).catch((err) => {
+                console.log(err)
+            })
+    </script>
+</body>
+
+</html>
